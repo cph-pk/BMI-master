@@ -18,31 +18,45 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Bmi beregner</title>
+    <title>Resultat</title>
 </head>
 <body>
 <div class="container">
     <img src="images/bmi_skala.png" class="img-fluid">
 
     <h1 class="mt-4 mb-4 text-center text-primary">BMI beregner</h1>
+    <div class="row">
+        <div class="col-md-4 col-lg-4"></div>
+        <div class="col-md-4 col-lg-4">
+            <table class="table table-borderless">
+                <tr>
+                    <td>Din højde:</td>
+                    <td>${requestScope.height} cm</td>
+                </tr>
+                <tr>
+                    <td>Din vægt:</td>
+                    <td>${requestScope.weight} kg</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Dit BMI er ${requestScope.bmiNumber}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Du er <span class="${requestScope.color}">${requestScope.beskrivelse}</span></td>
+                </tr>
 
-    <form action="FrontController" method="post">
-        <input type="hidden" name="taget" value="resultat">
-        <div class="form-group">
-            <label for="højdeICm">Indtast højde i cm</label>
-            <input type="text" name="height" class="form-control" id="højdeICm">
+            </table>
         </div>
-        <div class="form-group">
-            <label for="vægtIKg">Indtast vægt i kg</label>
-            <input type="text" name="weight" class="form-control" id="vægtIKg">
-            <small class="form-text text-muted">Du skal ikke være flov over din vægt.</small>
-        </div>
+        <div class="col-md-4 col-lg-4"></div>
+    </div>
 
-        <div class="mt-4 mb-4 text-center">
-            <button type="submit" class="btn btn-primary">Beregn BMI</button>
-        </div>
+    <div class="mt-4 mb-4 text-center">
+        <form action="FrontController" method="post">
+            <input type="hidden" name="taget" value="index">
+        <button type="submit" class="btn btn-primary">Til forsiden</button>
+        </form>
+    </div>
 
-    </form>
+
 </div>
 
 
