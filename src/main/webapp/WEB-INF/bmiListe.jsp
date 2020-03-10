@@ -18,44 +18,48 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Bmi beregner</title>
+    <title>BMI liste</title>
 </head>
 <body>
 <div class="container">
     <img src="images/bmi_skala.png" class="img-fluid">
 
-    <h1 class="mt-4 mb-4 text-center text-primary">BMI beregner</h1>
+    <h1 class="mt-4 mb-4 text-center text-primary">BMI liste</h1>
+    <div class="row">
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="col-md-8 col-lg-8">
+            <table class="table table-borderless">
+                <tr>
+                    <th>Dato</th>
+                    <th>Højde</th>
+                    <th>Vægt</th>
+                    <th>BMI</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
 
-    <form action="FrontController" method="post">
-        <input type="hidden" id="taget" name="taget" value="resultat">
-        <div class="form-group">
-            <label for="højdeICm">Indtast højde i cm</label>
-            <input type="text" name="height" class="form-control" id="højdeICm">
-        </div>
-        <div class="form-group">
-            <label for="vægtIKg">Indtast vægt i kg</label>
-            <input type="text" name="weight" class="form-control" id="vægtIKg">
-            <small class="form-text text-muted">Du skal ikke være flov over din vægt.</small>
-        </div>
 
-        <div class="mt-4 mb-4 text-center">
-            <button type="submit" class="btn btn-primary">Beregn BMI</button>
-            <button type="submit" onclick="change()" class="btn btn-success">BMI liste</button>
+            </table>
         </div>
+        <div class="col-md-2 col-lg-2"></div>
+    </div>
 
-    </form>
-    
+    <div class="mt-4 mb-4 text-center">
+        <form action="FrontController" method="post">
+            <input type="hidden" name="taget" value="index">
+        <button type="submit" class="btn btn-primary">Til forsiden</button>
+        </form>
+    </div>
+
+
 </div>
 
 
 <!-- Optional JavaScript -->
-<script>
-    function change()
-    {
-        document.getElementById("taget").value="bmiListe";
-    }
-</script>
-
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
