@@ -1,5 +1,6 @@
 package PresentationLayer;
 
+import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,12 +14,19 @@ public class Resultat extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         String height = request.getParameter("height");
         String weight = request.getParameter("weight");
-        Double bmiNumber = bmiNumber(height,weight);
-        request.setAttribute("height", height);
-        request.setAttribute("weight", weight);
-        request.setAttribute("bmiNumber", bmiNumber);
 
-        besked(request, bmiNumber);
+        if (!height.isEmpty() && !weight.isEmpty()) {
+            Double bmiNumber = bmiNumber(height,weight);
+            LogicFacade.createBmiList(height,weight,bmiNumber);
+            request.setAttribute("height", height);
+            request.setAttribute("weight", weight);
+            request.setAttribute("bmiNumber", bmiNumber);
+            besked(request, bmiNumber);
+        } else {
+            request.setAttribute("error", "Du skal udfylde begge felter!");
+            return "index";
+        }
+
         return "resultat";
     }
 

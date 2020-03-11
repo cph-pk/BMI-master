@@ -27,6 +27,7 @@
     <h1 class="mt-4 mb-4 text-center text-primary">BMI beregner</h1>
 
     <form action="FrontController" method="post">
+        <div class="text-center text-danger">${requestScope.error}</div>
         <input type="hidden" id="taget" name="taget" value="resultat">
         <div class="form-group">
             <label for="højdeICm">Indtast højde i cm</label>
@@ -40,19 +41,19 @@
 
         <div class="mt-4 mb-4 text-center">
             <button type="submit" class="btn btn-primary">Beregn BMI</button>
-            <button type="submit" onclick="change()" class="btn btn-success">BMI liste</button>
+            <button type="submit" value="bmiListe" onclick="change(this.value)" class="btn btn-success">BMI liste</button>
         </div>
 
     </form>
-    
+
 </div>
 
 
 <!-- Optional JavaScript -->
 <script>
-    function change()
+    function change(val)
     {
-        document.getElementById("taget").value="bmiListe";
+        document.getElementById("taget").value=val;
     }
 </script>
 

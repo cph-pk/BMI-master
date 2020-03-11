@@ -56,4 +56,18 @@ public class UserMapper {
         }
     }
 
+    public static void createBmiList(String height, String weight, Double bmiNumber) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "INSERT INTO bmi_liste (dato, height, weight, bmi) VALUES (NOW(), ?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement( SQL );
+            ps.setString( 1, height);
+            ps.setString( 2, weight);
+            ps.setDouble(3, bmiNumber);
+            ps.executeUpdate();
+
+        } catch ( SQLException | ClassNotFoundException ex ) {
+            throw new LoginSampleException( ex.getMessage() );
+        }
+    }
 }

@@ -18,4 +18,7 @@ public class LogicFacade {
         return user;
     }
 
+    public static void createBmiList(String height, String weight, Double bmiNumber) throws LoginSampleException {
+        UserMapper.createBmiList(height,weight,bmiNumber);
+    }
 }
