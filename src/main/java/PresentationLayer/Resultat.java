@@ -9,6 +9,8 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import static Util.BmiHelper.bmiNumber;
+
 public class Resultat extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
@@ -46,11 +48,5 @@ public class Resultat extends Command {
         }
     }
 
-    private static Double bmiNumber(String height, String weight) {
-        double h = Double.parseDouble(height);
-        double w = Double.parseDouble(weight);
-        double bmi = w / (Math.pow((h/100),2));
-        double result = Double.parseDouble(String.format(Locale.US,"%.2f", bmi));
-        return result;
-    }
+
 }

@@ -2,7 +2,7 @@ package FunctionLayer;
 
 public class Bmi {
 
-    public Bmi (String dato, String height, String weight, double bmi) {
+    public Bmi(String dato, String height, String weight, double bmi) {
         this.dato = dato;
         this.height = height;
         this.weight = weight;
