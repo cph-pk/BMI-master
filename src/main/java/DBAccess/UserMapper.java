@@ -1,5 +1,6 @@
 package DBAccess;
 
+import FunctionLayer.Bmi;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.User;
 import java.sql.Connection;
@@ -7,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  The purpose of UserMapper is to...
@@ -69,5 +72,28 @@ public class UserMapper {
         } catch ( SQLException | ClassNotFoundException ex ) {
             throw new LoginSampleException( ex.getMessage() );
         }
+    }
+
+    public static List<Bmi> showBmiListe() throws SQLException {
+        List<Bmi> bmiListe = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM bmi_liste";
+            PreparedStatement ps = con.prepareStatement( SQL );
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String dato = rs.getString("dato");
+                String height = rs.getString("height");
+                String weight = rs.getString("weight");
+                double bmi = rs.getDouble("bmi");
+                Bmi bmiL = new Bmi( dato, height, weight, bmi );
+                bmiListe.add(bmiL);
+            }
+        } catch ( ClassNotFoundException | SQLException ex ) {
+            throw new SQLException(ex.getMessage());
+        }
+
+
+        return bmiListe;
     }
 }

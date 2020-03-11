@@ -2,6 +2,9 @@ package FunctionLayer;
 
 import DBAccess.UserMapper;
 
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  * The purpose of LogicFacade is to...
  * @author kasper
@@ -20,5 +23,9 @@ public class LogicFacade {
 
     public static void createBmiList(String height, String weight, Double bmiNumber) throws LoginSampleException {
         UserMapper.createBmiList(height,weight,bmiNumber);
+    }
+
+    public static List<Bmi> showBmiListe() throws SQLException {
+        return UserMapper.showBmiListe();
     }
 }

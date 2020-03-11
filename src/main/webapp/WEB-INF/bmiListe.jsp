@@ -28,19 +28,22 @@
     <div class="row">
         <div class="col-md-2 col-lg-2"></div>
         <div class="col-md-8 col-lg-8">
-            <table class="table table-borderless">
+            <table class="table">
                 <tr>
                     <th>Dato</th>
                     <th>Højde</th>
                     <th>Vægt</th>
                     <th>BMI</th>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                <c:forEach var="element" items="${requestScope.bmiliste}">
+                    <tr>
+                        <td>${element.dato}</td>
+                        <td>${element.height}</td>
+                        <td>${element.weight}</td>
+                        <td>${element.bmi}</td>
+                    </tr>
+                </c:forEach>
+
 
 
             </table>
