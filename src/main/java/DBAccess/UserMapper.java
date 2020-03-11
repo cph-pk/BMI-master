@@ -8,6 +8,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,14 +64,16 @@ public class UserMapper {
         }
     }
 
-    public static void createBmiList(String height, String weight, Double bmiNumber) throws LoginSampleException {
+    public static void createBmiList(String height, String weight, Double bmiNumber, String status, String color) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO bmi_liste (dato, height, weight, bmi) VALUES (NOW(), ?, ?, ?)";
+            String SQL = "INSERT INTO bmi_liste (dato, height, weight, bmi, status, color) VALUES (NOW(), ?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement( SQL );
             ps.setString( 1, height);
             ps.setString( 2, weight);
             ps.setDouble(3, bmiNumber);
+            ps.setString(4, status);
+            ps.setString(5, color);
             ps.executeUpdate();
 
         } catch ( SQLException | ClassNotFoundException ex ) {
@@ -86,10 +93,16 @@ public class UserMapper {
                 String height = rs.getString("height");
                 String weight = rs.getString("weight");
                 double bmi = rs.getDouble("bmi");
-                Bmi bmiL = new Bmi( dato, height, weight, bmi );
+                String status = rs.getString("status");
+                String color = rs.getString("color");
+
+                DateFormat iFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                DateFormat oFormatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                String strDateTime = oFormatter.format(iFormatter.parse(dato));
+                Bmi bmiL = new Bmi( strDateTime, height, weight, bmi, status, color );
                 bmiListe.add(bmiL);
             }
-        } catch ( ClassNotFoundException | SQLException ex ) {
+        } catch (ClassNotFoundException | SQLException | ParseException ex ) {
             throw new SQLException(ex.getMessage());
         }
 

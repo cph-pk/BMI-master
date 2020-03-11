@@ -35,6 +35,7 @@
                     <th>Højde</th>
                     <th>Vægt</th>
                     <th>BMI</th>
+                    <th>Status</th>
                 </tr>
                 <c:forEach var="element" items="${requestScope.bmiliste}">
                     <tr>
@@ -42,6 +43,7 @@
                         <td>${element.height}</td>
                         <td>${element.weight}</td>
                         <td>${element.bmi}</td>
+                        <td><span class="${element.color}">${element.status}</span></td>
                     </tr>
                 </c:forEach>
 
