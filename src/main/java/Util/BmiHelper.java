@@ -11,4 +11,23 @@ public class BmiHelper {
         double result = Double.parseDouble(String.format(Locale.US,"%.2f", bmi));
         return result;
     }
+
+    public static String[] status(Double bmiNumber) {
+        String status = "";
+        String color = "";
+        if (bmiNumber < 18.5) {
+            status = "Undervægtig";
+            color = "text-info";
+        } else if (bmiNumber >= 18.5 && bmiNumber < 25) {
+            status = "Normalvægtig";
+            color = "text-success";
+        } else if (bmiNumber >= 25 && bmiNumber < 30) {
+            status = "Overvægtig";
+            color = "text-warning";
+        } else {
+            status = "Svært overvægtig";
+            color = "text-danger";
+        }
+        return new String[]{status, color};
+    }
 }

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import static Util.BmiHelper.bmiNumber;
+import static Util.BmiHelper.status;
 
 public class Resultat extends Command {
     @Override
@@ -32,24 +33,7 @@ public class Resultat extends Command {
         return "resultat";
     }
 
-    private static String[] status(Double bmiNumber) {
-        String status = "";
-        String color = "";
-        if (bmiNumber < 18.5) {
-            status = "Undervægtig";
-            color = "text-info";
-        } else if (bmiNumber >= 18.5 && bmiNumber < 25) {
-            status = "Normalvægtig";
-            color = "text-success";
-        } else if (bmiNumber >= 25 && bmiNumber < 30) {
-            status = "Overvægtig";
-            color = "text-warning";
-        } else {
-            status = "Svært overvægtig";
-            color = "text-danger";
-        }
-        return new String[]{status, color};
-    }
+
 /*
     private void status(HttpServletRequest request, Double bmiNumber) {
         if(bmiNumber < 18.5) {
